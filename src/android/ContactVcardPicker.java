@@ -36,6 +36,7 @@ import android.provider.ContactsContract;
 import android.content.res.AssetFileDescriptor;
 import android.database.Cursor;
 import android.provider.Contacts;
+import java.io.FileInputStream;
 /**
  * This class provides access to vibration on the device.
  */
