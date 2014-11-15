@@ -35,6 +35,7 @@ import org.json.JSONObject;
 import android.provider.ContactsContract;
 import android.content.res.AssetFileDescriptor;
 import android.database.Cursor;
+import android.provider.Contacts;
 /**
  * This class provides access to vibration on the device.
  */
@@ -80,13 +81,13 @@ public class ContactVcardPicker extends CordovaPlugin {
 				Uri contactData = data.getData();
 
 				@SuppressWarnings("deprecation")
-				Cursor cursor = managedQuery(contactData, null, null, null, null);
+				Cursor cursor = cordova.getActivity().getContentResolver().query(contactData, null, null, null, null);
 				cursor.moveToFirst();
 				String lookupKey = cursor.getString(cursor
 					.getColumnIndex(ContactsContract.Contacts.LOOKUP_KEY));
 				Uri uri = Uri.withAppendedPath(
 					ContactsContract.Contacts.CONTENT_VCARD_URI, lookupKey);
-				AssetFileDescriptor fd = getContentResolver()
+				AssetFileDescriptor fd = cordova.getActivity().getContentResolver()
 					.openAssetFileDescriptor(uri, "r");
 				FileInputStream fis = fd.createInputStream();
 				byte[] b = new byte[(int) fd.getDeclaredLength()];
