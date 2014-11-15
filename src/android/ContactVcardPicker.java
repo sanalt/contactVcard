@@ -44,7 +44,7 @@ public class ContactVcardPicker extends CordovaPlugin {
     /**
      * Constructor.
      */
-    public RingtonePicker() {
+    public ContactVcardPicker() {
     }
 
     @Override
