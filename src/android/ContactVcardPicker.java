@@ -59,7 +59,7 @@ public class ContactVcardPicker extends CordovaPlugin {
 
                     @Override
                     public void run() {
-                    Intent contactPickerIntent = new Intent(Intent.ACTION_PICK, Contacts.CONTENT_URI);
+                    Intent contactPickerIntent = new Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI);
                 	cordova.getActivity().startActivityForResult(contactPickerIntent, 5);
                     }
                 };
