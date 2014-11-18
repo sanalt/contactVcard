@@ -33,7 +33,7 @@ module.exports = {
      * @param {Integer} mills       The number of milliseconds to vibrate for.
      */
      
-    getRingtone: function(successCallback, errorCallback) {
+    pickContactVcard: function(successCallback, errorCallback) {
         exec(successCallback, errorCallback, "ContactVcardPicker", "getContactVcard", []);
     },
 };
