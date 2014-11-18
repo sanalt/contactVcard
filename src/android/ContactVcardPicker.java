@@ -75,6 +75,7 @@ public class ContactVcardPicker extends CordovaPlugin {
 	public void onActivityResult(int requestCode, int resultCode, Intent data)
 	{
      	Log.d("customPlugin", "Calling onActivityResult");
+     	
     	if (resultCode == Activity.RESULT_OK && requestCode == 5)
     	{
     		String vCard = null;
@@ -111,18 +112,6 @@ public class ContactVcardPicker extends CordovaPlugin {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-    	
-        	Uri uri = data.getParcelableExtra(RingtoneManager.EXTRA_RINGTONE_PICKED_URI);
-        	Ringtone ringtone = RingtoneManager.getRingtone(this.cordova.getActivity(), uri);
-        	String title = ringtone.getTitle(this.cordova.getActivity());
-       	 	Log.d("customPlugin", "I picked this ringtone " + uri);
-       	 	Log.d("customPlugin", "I picked this ringtone title" + title);
-       	 	
-        	if (uri != null)
-        	{
-        		Log.d("customPlugin", "Setting ringtone to  " + notification_uri);
-        		
-        	}
     	}
 	}
 
