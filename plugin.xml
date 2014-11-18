@@ -23,8 +23,8 @@
     id="org.apache.cordova.contactVcardpicker"
     version="0.3.8">
 
-    <name>RingtonePicker</name>
-    <description>Cordova RingtonePicker Plugin</description>
+    <name>ContactVcardPicker</name>
+    <description>Cordova ContactVcardPicker Plugin</description>
     <license>Apache 2.0</license>
     <keywords>cordova,contactVcardpicker, ringtone</keywords>
 
