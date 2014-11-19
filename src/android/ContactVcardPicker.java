@@ -97,9 +97,9 @@ public class ContactVcardPicker extends CordovaPlugin {
 				fis.read(b);
 				vCard = new String(b);
 				System.out.println("VACRD :" + vCard);
-				
+				cursor.moveToFirst();
 			String name = cursor.getString(cursor.getColumnIndexOrThrow(ContactsContract.Contacts.DISPLAY_NAME));
-
+cursor.moveToFirst();
             String phone = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
             	
 				String returnText = "{\"contact\": {\"name\": \""+name+"\",\"phone\": \""+phone+"\",\"vCard\": \""+vCard+"\"}}";
