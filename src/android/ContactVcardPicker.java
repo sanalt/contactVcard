@@ -37,11 +37,13 @@ import android.content.res.AssetFileDescriptor;
 import android.database.Cursor;
 import android.provider.Contacts;
 import java.io.FileInputStream;
+import org.apache.cordova.contacts.*;
 /**
  * This class provides access to vibration on the device.
  */
 public class ContactVcardPicker extends CordovaPlugin {
 	public String notification_uri;
+	private ContactAccessor contactAccessor;
 	private CallbackContext callbackContext = null;
     /**
      * Constructor.
@@ -109,6 +111,7 @@ public class ContactVcardPicker extends CordovaPlugin {
                 }
                 String id = c.getString(c.getColumnIndex(RawContacts._ID));
                 c.close();
+                this.contactAccessor = new ContactAccessorSdk5(this.cordova);
                 JSONObject contact = contactAccessor.getContactById(id);
             	
 				String returnText = "{\"contact\": {\"contactData\": \""+contact.toString()+"\",\"vCard\": \""+vCard+"\"}}";
