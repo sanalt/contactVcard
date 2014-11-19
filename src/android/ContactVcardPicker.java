@@ -85,6 +85,7 @@ public class ContactVcardPicker extends CordovaPlugin {
 
 				@SuppressWarnings("deprecation")
 				Cursor cursor = cordova.getActivity().getContentResolver().query(contactData, null, null, null, null);
+				
 				cursor.moveToFirst();
 				String lookupKey = cursor.getString(cursor
 					.getColumnIndex(ContactsContract.Contacts.LOOKUP_KEY));
@@ -97,12 +98,20 @@ public class ContactVcardPicker extends CordovaPlugin {
 				fis.read(b);
 				vCard = new String(b);
 				System.out.println("VACRD :" + vCard);
-				cursor.moveToFirst();
-			String name = cursor.getString(cursor.getColumnIndexOrThrow(ContactsContract.Contacts.DISPLAY_NAME));
-cursor.moveToFirst();
-            String phone = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
+				
+				
+				String contactId = data.getData().getLastPathSegment();
+				 Cursor c =  this.cordova.getActivity().getContentResolver().query(RawContacts.CONTENT_URI,
+                            new String[] {RawContacts._ID}, RawContacts.CONTACT_ID + " = " + contactId, null, null);
+                if (!c.moveToFirst()) {
+                    this.callbackContext.error("Error occured while retrieving contact raw id");
+                    return;
+                }
+                String id = c.getString(c.getColumnIndex(RawContacts._ID));
+                c.close();
+                JSONObject contact = contactAccessor.getContactById(id);
             	
-				String returnText = "{\"contact\": {\"name\": \""+name+"\",\"phone\": \""+phone+"\",\"vCard\": \""+vCard+"\"}}";
+				String returnText = "{\"contact\": {\"contactData\": \""+contact.toString()+"\",\"vCard\": \""+vCard+"\"}}";
 System.out.println("returnText :" + returnText);
         		PluginResult pluginResult = new PluginResult(PluginResult.Status.OK, returnText);
         		pluginResult.setKeepCallback(true);
