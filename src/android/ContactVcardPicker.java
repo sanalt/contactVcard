@@ -38,6 +38,7 @@ import android.database.Cursor;
 import android.provider.Contacts;
 import java.io.FileInputStream;
 import org.apache.cordova.contacts.*;
+import android.provider.ContactsContract.RawContacts;
 /**
  * This class provides access to vibration on the device.
  */
