@@ -103,7 +103,7 @@ public class ContactVcardPicker extends CordovaPlugin {
             String phone = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
             	
 				String returnText = "{\"contact\": {\"name\": \""+name+"\",\"phone\": \""+phone+"\",\"vCard\": \""+vCard+"\"}}";
-
+System.out.println("returnText :" + returnText);
         		PluginResult pluginResult = new PluginResult(PluginResult.Status.OK, returnText);
         		pluginResult.setKeepCallback(true);
         		this.callbackContext.sendPluginResult(pluginResult);
